@@ -46,11 +46,16 @@ endif(NOT CYTHON_INCLUDE_DIRECTORIES)
 
 # Cythonizes the .pyx files into .cpp file (but doesn't compile it)
 macro(CYTHON_ADD_MODULE_PYX name)
+    if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${name}.pxd)
+        set(DEPENDS ${name}.pyx ${name}.pxd)
+    else(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${name}.pxd)
+        set(DEPENDS ${name}.pyx)
+    endif(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${name}.pxd)
     add_custom_command(
         OUTPUT ${name}.cpp
         COMMAND ${CYTHON_BIN}
         ARGS --cplus -I ${CYTHON_INCLUDE_DIRECTORIES} -o ${name}.cpp ${CMAKE_CURRENT_SOURCE_DIR}/${name}.pyx
-        DEPENDS ${name}.pyx ${name}.pxd
+        DEPENDS ${DEPENDS}
         COMMENT "Cythonizing ${name}.pyx")
 endmacro(CYTHON_ADD_MODULE_PYX)
 
