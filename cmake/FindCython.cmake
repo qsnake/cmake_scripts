@@ -56,7 +56,7 @@ endmacro(CYTHON_ADD_MODULE_PYX)
 
 # Cythonizes and compiles a .pyx file
 macro(CYTHON_ADD_MODULE name)
-    CYTHON_ADD_MODULE_PYX(${name} ${ARGN})
+    CYTHON_ADD_MODULE_PYX(${name})
     # We need Python for this:
     find_package(Python REQUIRED)
     add_python_library(${name} ${name}.cpp ${ARGN})
