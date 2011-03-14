@@ -9,5 +9,7 @@ fi
 
 set -e
 
+echo "Installing cmake files into $SPKG_LOCAL/share/qsnake/cmake"
 mkdir -p "$SPKG_LOCAL"/share/qsnake
 cp -r cmake "$SPKG_LOCAL"/share/qsnake/
+echo "    Done."
