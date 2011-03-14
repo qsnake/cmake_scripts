@@ -1,0 +1,13 @@
+#! /bin/sh
+
+if [ "$SPKG_LOCAL" = "" ]; then
+   echo "SPKG_LOCAL undefined ... exiting";
+   echo "Maybe run 'qsnake --shell'?"
+   exit 1
+fi
+
+
+set -e
+
+mkdir -p "$SPKG_LOCAL"/share/qsnake
+cp -r cmake "$SPKG_LOCAL"/share/qsnake/
